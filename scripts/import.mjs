@@ -5,6 +5,7 @@
  *   node scripts/import.mjs                 # content + images (images downloaded from the old site)
  *   node scripts/import.mjs --images ./dir  # use a local folder that contains ApplicationImages/
  *   node scripts/import.mjs --skip-images   # content only
+ *   node scripts/import.mjs --only-images   # images only (skips files already uploaded)
  *   add  --revalidate https://your-site.com  to clear the website cache afterwards
  *
  * Needs NEXT_PUBLIC_SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY (reads .env.local).
@@ -110,38 +111,83 @@ export function storageKey(p) {
 
 const MIME = { jpg: 'image/jpeg', jpeg: 'image/jpeg', png: 'image/png', gif: 'image/gif', webp: 'image/webp', svg: 'image/svg+xml', pdf: 'application/pdf', mp4: 'video/mp4' };
 
+const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
+// never wait forever on one file
+const withTimeout = (p, ms) => Promise.race([p, sleep(ms).then(() => { throw new Error('timed out'); })]);
+
+/** Names already in the bucket, per folder (so a re-run only uploads what is missing). */
+const existingCache = new Map();
+async function existsInBucket(key) {
+  const i = key.lastIndexOf('/');
+  const dir = i >= 0 ? key.slice(0, i) : '';
+  const name = key.slice(i + 1);
+  if (!existingCache.has(dir)) {
+    const names = new Set();
+    for (let offset = 0; ; offset += 1000) {
+      const { data, error } = await sb.storage.from(BUCKET).list(dir, { limit: 1000, offset });
+      if (error || !data?.length) break;
+      data.forEach((f) => names.add(f.name));
+      if (data.length < 1000) break;
+    }
+    existingCache.set(dir, names);
+  }
+  return existingCache.get(dir).has(name);
+}
+
 async function importImages() {
   const local = opt('--images');
+  // the free Supabase plan allows few connections at once: upload 2 at a time and retry
+  const parallel = Number(opt('--parallel') || 2);
   const files = local ? walkDir(path.join(local, 'ApplicationImages')).map((f) => 'ApplicationImages/' + f) : collectImagePaths();
-  console.log(`uploading ${files.length} files to storage bucket "${BUCKET}" …`);
-  let ok = 0, failed = 0;
+  console.log(`checking ${files.length} files in storage bucket "${BUCKET}" …`);
+  let ok = 0, skipped = 0, failed = 0, done = 0;
   const queue = [...files];
   const worker = async () => {
     while (queue.length) {
       const rel = queue.shift();
-      try {
-        let buf;
-        if (local) buf = fs.readFileSync(path.join(local, rel));
-        else {
-          const r = await fetch(OLD_SITE + '/' + rel.split('/').map(encodeURIComponent).join('/'));
-          if (!r.ok) throw new Error('HTTP ' + r.status);
-          buf = Buffer.from(await r.arrayBuffer());
+      const objectKey = storageKey(rel);
+      let lastError;
+      for (let attempt = 1; attempt <= 6; attempt++) {
+        try {
+          if (!flag('--force-images') && (await existsInBucket(objectKey))) {
+            skipped++;
+            lastError = null;
+            break;
+          }
+          let buf;
+          if (local) buf = fs.readFileSync(path.join(local, rel));
+          else {
+            const r = await fetch(OLD_SITE + '/' + rel.split('/').map(encodeURIComponent).join('/'), { signal: AbortSignal.timeout(60000) });
+            if (r.status === 404) throw Object.assign(new Error('not found on the old site'), { fatal: true });
+            if (!r.ok) throw new Error('HTTP ' + r.status);
+            buf = Buffer.from(await r.arrayBuffer());
+          }
+          const ext = rel.split('.').pop().toLowerCase();
+          const { error } = await withTimeout(sb.storage.from(BUCKET).upload(objectKey, buf, { upsert: true, contentType: MIME[ext] || 'application/octet-stream' }), 120000);
+          if (error) throw error;
+          ok++;
+          lastError = null;
+          break;
+        } catch (e) {
+          lastError = e;
+          if (e.fatal) break;
+          await sleep(1500 * attempt); // wait longer after each failure
         }
-        const ext = rel.split('.').pop().toLowerCase();
-        const { error } = await sb.storage.from(BUCKET).upload(storageKey(rel), buf, { upsert: true, contentType: MIME[ext] || 'application/octet-stream' });
-        if (error) throw error;
-        ok++;
-      } catch (e) {
-        failed++;
-        console.warn('  ✗', rel, e.message || e);
       }
+      if (lastError) {
+        failed++;
+        console.warn('  ✗', rel, lastError.message || lastError);
+      }
+      done++;
+      if (done % 25 === 0) console.log(`  … ${done}/${files.length}`);
     }
   };
-  await Promise.all(Array.from({ length: 6 }, worker));
-  console.log(`images ✓ ${ok} uploaded, ${failed} failed`);
+  await Promise.all(Array.from({ length: parallel }, worker));
+  console.log(`images ✓ ${ok} uploaded, ${skipped} already there, ${failed} failed`);
+  if (failed) console.log('Run the same command again to retry only the failed files.');
 }
 
-await importContent();
+if (!flag('--only-images')) await importContent();
 if (!flag('--skip-images')) await importImages();
 const revalidateUrl = opt('--revalidate');
 if (revalidateUrl) {
