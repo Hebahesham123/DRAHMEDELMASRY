@@ -1,0 +1,42 @@
+User-Agent: *
+allow:/
+Disallow:/Cpanel/
+Disallow:/ApplicationImages/Galleries/Ã˜Â£Ã˜Â³Ã˜Â¹Ã˜Â§Ã˜Â±Ã˜Â¹Ã™â€¦Ã™â€žÃ™Å Ã˜Â§Ã˜ÂªÃ˜Â§Ã™â€žÃ˜Â³Ã™â€¦Ã™â€ Ã˜Â©Ã™ÂÃ™Å Ã™â€¦Ã˜ÂµÃ˜Â±.jpeg
+Disallow:/ApplicationImages/Galleries/Ã˜Â¹Ã™â€¦Ã™â€žÃ™Å Ã˜Â©Ã˜Â³Ã™â€¦Ã™â€ Ã˜Â©Ã˜Â¨Ã˜Â£Ã˜Â³Ã˜Â±Ã˜Â¹Ã™ÂÃ˜ÂªÃ˜Â±Ã˜Â©Ã™â€ Ã™â€šÃ˜Â§Ã™â€¡Ã˜Â©.jpeg
+Disallow:/ApplicationImages/Galleries/Ã˜Â§Ã™â€žÃ˜ÂªÃ™Æ’Ã™â€¦Ã™Å Ã™â€¦Ã™ÂÃ™Å Ã™â€¦Ã˜ÂµÃ˜Â±.jpeg
+Disallow:/ApplicationImages/Galleries/Ã˜Â¹Ã™â€¦Ã™â€žÃ™Å Ã˜Â§Ã˜ÂªÃ˜Â§Ã™â€žÃ˜Â³Ã™â€¦Ã™â€ Ã˜Â©Ã˜Â¨Ã˜Â§Ã™â€žÃ™â€¦Ã™â€ Ã˜Â¸Ã˜Â§Ã˜Â±.jpeg
+Disallow:/ApplicationImages/Galleries/Ã˜Â¹Ã™â€¦Ã™â€žÃ™Å Ã˜Â©Ã˜Â§Ã™â€žÃ˜ÂªÃ™â€šÃ˜Â³Ã™Å Ã™â€¦Ã˜Â§Ã™â€žÃ˜Â«Ã™â€ Ã˜Â§Ã˜Â¦Ã™Å .jpeg
+Disallow:/ApplicationImages/Galleries/Ã˜Â§Ã™â€žÃ˜ÂªÃ™Æ’Ã™â€¦Ã™Å Ã™â€¦Ã˜Â§Ã™â€žÃ™â€¦Ã˜ÂºÃ™â€žÃ™Â.jpeg
+Disallow:/ApplicationImages/Galleries/Ã˜Â¯Ã˜Â¨Ã˜Â§Ã˜Â³Ã˜Â§Ã˜ÂªÃ˜Â§Ã™â€žÃ™â€¦Ã˜Â¹Ã˜Â¯Ã˜Â©Ã˜Â§Ã™â€žÃ˜Â£Ã™â€¦Ã˜Â±Ã™Å Ã™Æ’Ã™Å Ã˜Â©.jpeg
+Disallow:/ApplicationImages/Galleries/Ã˜Â§Ã™â€žÃ™Ë†Ã˜ÂµÃ™Ë†Ã™â€žÃ™â€žÃ™â€žÃ™Ë†Ã˜Â²Ã™â€ Ã˜Â§Ã™â€žÃ™â€¦Ã˜Â«Ã˜Â§Ã™â€žÃ™Å .jpeg
+Disallow:/ApplicationImages/Galleries/Ã˜Â¹Ã™â€žÃ˜Â§Ã˜Â¬Ã˜Â§Ã˜Â±Ã˜ÂªÃ˜Â¬Ã˜Â§Ã˜Â¹Ã˜Â§Ã™â€žÃ™â€¦Ã˜Â±Ã™Å Ã˜Â¡.jpeg
+Disallow:/ApplicationImages/Galleries/Ã˜ÂªÃ˜Â­Ã™Ë†Ã™Å Ã™â€žÃ˜Â§Ã™â€žÃ™â€¦Ã˜Â³Ã˜Â§Ã˜Â±Ã™ÂÃ™Å Ã™â€¦Ã˜ÂµÃ˜Â±.jpeg
+Disallow:/ApplicationImages/Galleries/Ã˜Â§Ã™â€žÃ™Æ’Ã˜Â¨Ã˜Â³Ã™Ë†Ã™â€žÃ˜Â©Ã˜Â§Ã™â€žÃ˜Â°Ã™Æ’Ã™Å Ã˜Â©.jpeg
+Disallow:/ApplicationImages/Galleries/Ã˜Â§Ã™â€žÃ˜Â´Ã™ÂÃ˜Â§Ã˜Â¡Ã™â€¦Ã™â€ Ã™â€¦Ã˜Â±Ã˜Â¶Ã˜Â§Ã™â€žÃ˜Â³Ã™Æ’Ã˜Â±Ã˜Â§Ã™â€žÃ™â€ Ã™Ë†Ã˜Â¹Ã˜Â§Ã™â€žÃ˜Â«Ã˜Â§Ã™â€ Ã™Å .jpeg
+Disallow:/ApplicationImages/Galleries/Ã˜Â§Ã˜Â³Ã˜ÂªÃ˜Â´Ã˜Â§Ã˜Â±Ã™Å Ã˜Â¬Ã˜Â±Ã˜Â§Ã˜Â­Ã˜Â©Ã˜Â§Ã™â€žÃ˜Â³Ã™â€¦Ã™â€ Ã˜Â©.jpeg
+Disallow:/ApplicationImages/Galleries/Ã˜Â§Ã™â€žÃ˜ÂªÃ™Æ’Ã™â€¦Ã™Å Ã™â€¦Ã˜Â§Ã™â€žÃ˜Â¯Ã™â€šÃ™Å Ã™â€šÃ™ÂÃ™Å Ã™â€¦Ã˜ÂµÃ˜Â±.jpeg
+Disallow:/ApplicationImages/Galleries/Ã˜ÂªÃ™Æ’Ã˜Â§Ã™â€žÃ™Å Ã™ÂÃ˜Â¹Ã™â€¦Ã™â€žÃ™Å Ã˜Â§Ã˜ÂªÃ˜Â§Ã™â€žÃ˜Â³Ã™â€¦Ã™â€ Ã˜Â©.jpeg
+Disallow:/ApplicationImages/Galleries/Ã˜Â£Ã™â€¦Ã™â€¡Ã˜Â±Ã˜Â·Ã˜Â¨Ã™Å Ã˜Â¨Ã˜Â¹Ã™â€¦Ã™â€žÃ™Å Ã˜Â§Ã˜ÂªÃ˜Â§Ã™â€žÃ˜Â³Ã™â€¦Ã™â€ Ã˜Â©.jpeg
+Disallow:/ApplicationImages/Galleries/Ã™Æ’Ã˜Â¨Ã˜Â³Ã™Ë†Ã™â€žÃ˜Â©Ã™â€¦Ã˜Â¨Ã˜Â±Ã™â€¦Ã˜Â¬Ã˜Â©Ã˜Â°Ã™Æ’Ã™Å Ã˜Â©.jpeg
+Disallow:/ApplicationImages/Galleries/Ã˜Â¹Ã™â€¦Ã™â€žÃ™Å Ã˜Â©Ã™â€šÃ˜ÂµÃ˜Â§Ã™â€žÃ™â€¦Ã˜Â¹Ã˜Â¯Ã˜Â©.jpeg
+Disallow:/Help/Api/GET-user-userID-get-user-investigation
+Disallow:/Help/Api/GET-directory-get-social-media-links
+Disallow:/Help/Api/GET-directory-get-before-and-after
+Disallow:/Help/Api/PUT-user-add-user-investigation
+Disallow:/Help/Api/GET-directory-galleryType-get-gallery
+Disallow:/Help/Api/GET-user-userID-get-user-medication
+Disallow:/Help/Api/PUT-user-update-user-personal-profile
+Disallow:/Help/Api/GET-directory-weight-get-questionnaire-result
+Disallow:/Help/Api/GET-directory-get-questions-list
+Disallow:/Help/Api/PUT-user-update-user-settings
+Disallow:/Help/Api/GET-directory-get-surgery-tips
+Disallow:/Help/Api/GET-calendar-get-food
+Disallow:/Help/Api/POST-calendar-add-day-food
+Disallow:/FAQDetail/What%20is%20the%20benefits%20of%20laproscope%20in%20Gastric%20Sleeve%20surgeryQQQQ
+Disallow:/FAQDetail/What%20is%20Gastric%20Sleeve%20surgeryQQQQ
+
+
+
+
+Sitemap: https://www.doctorahmedelmasry.com/sitemap.xml
+llms: https://www.doctorahmedelmasry.com/llms.txt
